@@ -1,0 +1,102 @@
+<!doctype html>
+<!-- Cover image for the Discord scheduled event the bot opens on go-live
+     (bot.suzy.gg apps/bot/src/live/scheduledEventSync.ts, COVER_IMAGE_URL).
+     Discord wants 800x320 (2.5:1). Laid out at 800x320 CSS px, rendered at 2x
+     by render.sh. Palette, type and stickers are suzy.gg's styles.css. One image
+     for every stream, so nothing on it is per-stream (no title, no game). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Fredoka:wght@600;700&display=block" rel="stylesheet" />
+<style>
+  :root {
+    --ground: #AFCBF2;
+    --ink: #1B1A33;
+    --paper: #F7F1E4;
+    --pink: #F4A7D8;
+    --blue: #93B4EE;
+    --mint: #9FE6CE;
+    --butter: #FBE0A0;
+    --lilac: #C9AEFF;
+    --lime: #B6F5A0;
+    --red: #D9534A;
+    --mono: "DM Mono", ui-monospace, monospace;
+    --display: "Fredoka", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 800px; height: 320px; overflow: hidden; background: var(--ground); color: var(--ink); }
+  .stage { position: relative; width: 800px; height: 320px; overflow: hidden; }
+  .stage > * { position: absolute; }
+
+  /* background stickers */
+  .blob { left: -90px; top: 170px; width: 280px; height: 280px; border-radius: 999px; background: rgba(255,255,255,.28); }
+  .blob-b { left: 560px; top: -170px; width: 300px; height: 300px; border-radius: 999px; background: rgba(255,255,255,.22); }
+  .ring { right: -80px; bottom: -120px; width: 240px; height: 240px; border-radius: 999px; border: 5px solid rgba(27,26,51,.1); }
+  .spark, .moon { stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+  .spark-a { left: 30px; top: 34px; width: 26px; height: 26px; fill: var(--pink); transform: rotate(-12deg); }
+  .spark-b { right: 40px; top: 30px; width: 30px; height: 30px; fill: var(--butter); transform: rotate(14deg); }
+  .moon { left: 272px; top: 264px; width: 28px; height: 28px; fill: var(--butter); transform: rotate(-18deg); }
+  .dot { right: 58px; top: 214px; width: 18px; height: 18px; border-radius: 999px; background: var(--mint); border: 2.5px solid var(--ink); box-shadow: 3px 4px 0 var(--ink); }
+  .hoop { left: 298px; top: 26px; width: 22px; height: 22px; border-radius: 999px; border: 3px solid var(--ink); }
+  .squiggle { right: 120px; top: 22px; width: 90px; height: 18px; fill: none; stroke: var(--pink); stroke-width: 4; stroke-linecap: round; transform: rotate(-6deg); }
+
+  /* photo stack, as on suzy.gg */
+  .photo { left: 56px; top: 50px; width: 196px; height: 196px; }
+  .photo-back { position: absolute; inset: 0; border-radius: 22px; border: 3px solid var(--ink); }
+  .photo-back-pink { background: var(--pink); transform: translate(9px, 9px) rotate(6deg); }
+  .photo-back-blue { background: var(--blue); transform: translate(-8px, 4px) rotate(-5deg); }
+  .photo-card { position: absolute; inset: 0; padding: 8px; border-radius: 22px; background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 8px 0 var(--ink); transform: rotate(1.5deg); }
+  .photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; border-radius: 14px; border: 2.5px solid var(--ink); }
+  .heart { position: absolute; right: -20px; top: 18px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--butter); border: 3px solid var(--ink); box-shadow: 3px 4px 0 var(--ink); transform: rotate(10deg); }
+  .heart svg { width: 47%; height: 47%; fill: var(--pink); stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; }
+
+  /* headline: LIVE pill sitting on the suzy name pill */
+  .headline { left: 318px; top: 50px; display: flex; flex-direction: column; align-items: flex-start; }
+  .live { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; margin: 0 0 -14px 26px; padding: 8px 16px 8px 13px; border-radius: 999px; background: var(--paper); border: 2.5px solid var(--ink); box-shadow: 2px 3px 0 var(--ink); font-family: var(--mono); font-weight: 500; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; transform: rotate(-4deg); }
+  .live i { width: 12px; height: 12px; border-radius: 999px; background: var(--red); border: 2px solid var(--ink); }
+  .name { padding: 2px 16px 8px; border-radius: 20px; background: var(--pink); border: 3px solid var(--ink); box-shadow: 5px 6px 0 var(--ink); font-family: var(--display); font-weight: 700; font-size: 92px; line-height: 1; transform: rotate(-3deg); }
+  .sub { position: absolute; left: 568px; top: 112px; padding: 7px 14px; border-radius: 999px; background: var(--mint); border: 2.5px solid var(--ink); box-shadow: 3px 4px 0 var(--ink); font-family: var(--display); font-weight: 700; font-size: 20px; white-space: nowrap; transform: rotate(5deg); }
+
+  /* watch pills, the suzy.gg link buttons */
+  .links { left: 318px; top: 214px; display: flex; gap: 12px; }
+  .link { display: flex; align-items: center; gap: 10px; padding: 6px 18px 6px 6px; border-radius: 999px; background: var(--paper); border: 3px solid var(--ink); box-shadow: 4px 5px 0 var(--ink); font-family: var(--display); font-weight: 700; font-size: 18px; white-space: nowrap; }
+  .tile { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 2.5px solid var(--ink); }
+  .tile img { width: 21px; height: 21px; }
+
+  .site { right: 26px; bottom: 18px; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="blob"></div>
+  <div class="blob-b"></div>
+  <div class="ring"></div>
+  <svg class="spark spark-a" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="spark spark-b" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <div class="dot"></div>
+  <div class="hoop"></div>
+  <svg class="squiggle" viewBox="0 0 104 20"><path d="M4 10 Q 16.5 1 29 10 T 54 10 T 79 10 T 100 10"/></svg>
+
+  <div class="photo">
+    <div class="photo-back photo-back-pink"></div>
+    <div class="photo-back photo-back-blue"></div>
+    <div class="photo-card"><img src="suzy-hs.webp" alt="" /></div>
+    <span class="heart"><svg viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.6-8.8 10-8.8 10s-8.8-5.4-8.8-10a5.2 5.2 0 0 1 8.8-3.7 5.2 5.2 0 0 1 8.8 3.7z"/></svg></span>
+  </div>
+
+  <div class="headline">
+    <span class="live"><i></i>Live now</span>
+    <span class="name">suzy</span>
+  </div>
+  <span class="sub">come hang out!</span>
+
+  <div class="links">
+    <span class="link"><span class="tile" style="background: var(--lilac)"><img src="twitch.webp" alt="" /></span>twitch.tv/suzy</span>
+    <span class="link"><span class="tile" style="background: var(--lime)"><img src="kick.webp" alt="" /></span>kick.com/ddooyaa</span>
+  </div>
+
+  <span class="site">suzy.gg</span>
+</div>
+</body>
+</html>
