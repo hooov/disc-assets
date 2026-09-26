@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- soozybot pixel Twitch offline screen, 1920x1080: the whole seafloor scene, the pineapple
+     (280px image at 2x) asleep in front of its house with pixel z's, and the message box in
+     the open water. Nothing in the top left (Twitch's OFFLINE label) or the bottom strip
+     (player controls). Rendered by ../render.js (pixel-twitch-offline). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Silkscreen&family=Jua&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="pixel.css" />
+<style>
+  html, body, .stage { width: 1920px; height: 1080px; }
+  .pine { left: 1150px; top: 340px; width: 560px; height: 560px; }
+  .card { left: 200px; top: 300px; padding: 44px 56px 50px; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+  .card .tag { position: absolute; left: 44px; top: -34px; font-size: 22px; }
+  .card .title { font-size: 112px; margin-top: 10px; }
+  .card .ko { font-family: var(--ko); font-size: 50px; color: var(--teal); }
+  .card .chips { flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 8px; }
+  .card .chip { font-size: 30px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <img class="sea" src="seafloor.webp" alt="" />
+  <img class="pine pine-shadow" src="pineapple.png" alt="" />
+  <span data-zzz="16" style="left:1660px;top:300px"></span>
+  <span data-zzz="12" style="left:1760px;top:200px"></span>
+  <span data-zzz="8" style="left:1840px;top:130px"></span>
+  <div class="card box">
+    <span class="tag label">I'm a bot</span>
+    <span class="title">i don't stream!</span>
+    <span class="ko">저는 봇이에요!</span>
+    <span class="label" style="font-size:22px;color:var(--ink)">catch suzy live:</span>
+    <div class="chips">
+      <span class="chip"><span class="tile twitch" data-logo="twitch"></span>twitch.tv/suzy</span>
+      <span class="chip"><span class="tile kick" data-logo="kick"></span>kick.com/ddooyaa</span>
+      <span class="chip"><span class="tile discord" data-logo="discord"></span>discord.gg/suzy</span>
+    </div>
+  </div>
+</div>
+<script src="pixel.js"></script>
+<script src="../bot.js"></script>
+</body>
+</html>

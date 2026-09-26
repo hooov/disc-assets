@@ -1,0 +1,44 @@
+<!doctype html>
+<!-- soozybot pixel Twitch profile banner, 1200x480 at 2x. The pineapple (280px image at 2x)
+     stands in front of the scene's big pineapple house; the name box sits in the open water.
+     Rendered by ../render.js (pixel-twitch-banner). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Silkscreen&family=Jua&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="pixel.css" />
+<style>
+  html, body, .stage { width: 1200px; height: 480px; }
+  .sea { object-position: 50% 62%; }
+  .pine { left: 912px; top: 160px; width: 280px; height: 280px; }
+  .card { left: 64px; top: 92px; padding: 30px 40px 34px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .card .tag { position: absolute; left: 30px; top: -30px; font-size: 18px; }
+  .card .title { font-size: 104px; margin-top: 8px; }
+  .card .sub { font-family: var(--title); font-weight: 700; font-size: 32px; color: var(--teal); }
+  .card .chips { margin-top: 8px; gap: 10px; }
+  .card .chip { font-size: 20px; padding: 5px 12px 5px 5px; gap: 8px; }
+  .card .tile { width: 36px; height: 36px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <img class="sea" src="seafloor.webp" alt="" />
+  <span class="bubble" data-bubble="5" style="left:790px;top:120px"></span>
+  <span class="bubble" data-bubble="3" style="left:1140px;top:80px"></span>
+  <span class="bubble" data-bubble="4" style="left:40px;top:40px"></span>
+  <img class="pine pine-shadow" src="pineapple.png" alt="" />
+  <div class="card box">
+    <span class="tag label">Hello! I'm</span>
+    <span class="title">soozybot</span>
+    <span class="sub">suzy's chat bot</span>
+    <div class="chips">
+      <span class="chip"><span class="tile twitch" data-logo="twitch"></span>twitch.tv/suzy</span>
+      <span class="chip"><span class="tile kick" data-logo="kick"></span>kick.com/ddooyaa</span>
+      <span class="chip"><span class="tile discord" data-logo="discord"></span>discord.gg/suzy</span>
+    </div>
+  </div>
+</div>
+<script src="pixel.js"></script>
+<script src="../bot.js"></script>
+</body>
+</html>

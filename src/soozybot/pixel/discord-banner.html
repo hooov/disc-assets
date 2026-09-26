@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- soozybot pixel Discord profile banner, 680x240 at 2x. The lower left stays clear for the
+     profile picture Discord lays over it. The pineapple is the 280px image at 1x (140 CSS px
+     at 2x). Rendered by ../render.js (pixel-discord-banner). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Silkscreen&family=Jua&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="pixel.css" />
+<style>
+  html, body, .stage { width: 680px; height: 240px; }
+  .sea { object-position: 50% 30%; }
+  .pine { left: 534px; top: 62px; width: 140px; height: 140px; }
+  .card { left: 190px; top: 40px; padding: 20px 26px 22px; border-width: 5px; box-shadow: inset 0 0 0 3px var(--white), inset 0 0 0 5px var(--water), 6px 6px 0 var(--ink); display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .card .tag { position: absolute; left: 20px; top: -20px; font-size: 13px; padding: 5px 10px; border-width: 4px; box-shadow: 4px 4px 0 var(--ink); }
+  .card .title { font-size: 56px; margin-top: 4px; }
+  .card .chips { gap: 8px; }
+  .card .tile { width: 32px; height: 32px; border-width: 3px; box-shadow: 3px 3px 0 var(--ink); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <img class="sea" src="seafloor.webp" alt="" />
+  <span class="bubble" data-bubble="3" style="left:480px;top:30px"></span>
+  <span class="bubble" data-bubble="2" style="left:640px;top:20px"></span>
+  <img class="pine pine-shadow" src="pineapple.png" alt="" />
+  <div class="card box">
+    <span class="tag label">suzy's chat bot</span>
+    <span class="title">soozybot</span>
+    <div class="chips">
+      <span class="tile twitch" data-logo="twitch"></span>
+      <span class="tile kick" data-logo="kick"></span>
+      <span class="tile discord" data-logo="discord"></span>
+    </div>
+  </div>
+</div>
+<script src="pixel.js"></script>
+<script src="../bot.js"></script>
+</body>
+</html>

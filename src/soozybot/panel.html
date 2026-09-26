@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- soozybot Twitch chat panels (channel About section), 320x100 each, rendered at 640x200
+     with a transparent background so the sticker card sits on Twitch's light or dark page.
+     The #hash picks the panel: about, commands, suzy, discord, kick, dashboard. Rendered by
+     render.js (panels/panel-<name>.png). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Fredoka:wght@600;700&family=Jua&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html, body { width: 320px; height: 100px; background: transparent; }
+  .card { position: absolute; left: 6px; top: 8px; width: 298px; height: 78px; display: flex; align-items: center; gap: 14px; padding: 0 16px 0 12px; border-radius: 24px; border: 3.5px solid var(--ink); box-shadow: 5px 6px 0 var(--ink); background: var(--lilac); overflow: hidden; }
+  .card .tile { width: 54px; height: 54px; background: var(--paper); box-shadow: 3px 4px 0 var(--ink); }
+  .card .tile svg { width: 56%; height: 56%; }
+  .card .tile .bot { width: 118%; height: 118%; margin-top: 4px; }
+  .card .tile.glyph { font-family: var(--mono); font-weight: 500; font-size: 30px; line-height: 1; }
+  .words { display: flex; flex-direction: column; gap: 2px; }
+  .title { font-family: var(--display); font-weight: 700; font-size: 34px; line-height: 1; white-space: nowrap; }
+  .sub { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+  /* one sparkle on the icon's top right corner, clear of the words */
+  .spark { position: absolute; left: 50px; top: 4px; width: 20px; height: 20px; fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <span class="tile" id="icon"></span>
+  <span class="words"><span class="title" id="title"></span><span class="sub" id="sub"></span></span>
+  <svg class="spark" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+</div>
+<script>
+  // [card colour, icon, title, small line]; icon is a bot mood, a logo name, or text
+  const PANELS = {
+    about:     ["var(--lilac)", "bot:happy", "about", "suzy's chat bot"],
+    commands:  ["var(--butter)", "text:!", "commands", "type them in chat"],
+    suzy:      ["var(--pink)", "logo:twitch", "watch suzy", "twitch.tv/suzy"],
+    discord:   ["var(--blue)", "logo:discord", "discord", "discord.gg/suzy"],
+    kick:      ["#B6F5A0", "logo:kick", "kick", "kick.com/ddooyaa"],
+    dashboard: ["var(--mint)", "bot:wink", "bot.suzy.gg", "commands and settings"],
+  };
+  const [bg, icon, title, sub] = PANELS[location.hash.slice(1)] || PANELS.about;
+  document.getElementById("card").style.background = bg;
+  document.getElementById("title").textContent = title;
+  document.getElementById("sub").textContent = sub;
+  const el = document.getElementById("icon");
+  const [kind, val] = icon.split(":");
+  if (kind === "bot") el.dataset.bot = val;
+  else if (kind === "logo") el.dataset.logo = val;
+  else { el.classList.add("glyph"); el.textContent = val; }
+  if (val === "moon") el.classList.add("moon");
+</script>
+<script src="bot.js"></script>
+</body>
+</html>

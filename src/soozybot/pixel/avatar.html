@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- soozybot pixel profile picture (Twitch and Discord crop it to a circle), 1024x1024. The
+     pineapple is its own 280px image at exactly 3x, over the seafloor scene's open water.
+     #plain: flat water instead of the scene. Rendered by ../render.js (pixel-avatar). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="pixel.css" />
+<style>
+  html, body, .stage { width: 512px; height: 512px; }
+  .sea { object-position: 34% 18%; transform: scale(1.35); transform-origin: 34% 18%; }
+  .v-plain .sea { display: none; }
+  .v-plain .stage { background: var(--water); }
+  .pine { left: 46px; top: 44px; width: 420px; height: 420px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <img class="sea" src="seafloor.webp" alt="" />
+  <span class="bubble" data-bubble="4" style="left:70px;top:120px"></span>
+  <span class="bubble" data-bubble="3" style="left:410px;top:90px"></span>
+  <span class="bubble" data-bubble="3" style="left:420px;top:380px"></span>
+  <img class="pine pine-shadow" src="pineapple.png" alt="" />
+</div>
+<script src="pixel.js"></script>
+</body>
+</html>

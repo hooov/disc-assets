@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- soozybot Discord profile banner (Developer Portal > the app > Bot > Banner), 680x240,
+     rendered at 1360x480. Discord lays the round profile picture over the banner's
+     lower left, so that corner is kept empty; the popout shows it at about half size, so
+     the pieces are big and few. Rendered by render.js (soozybot-discord-banner). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500&family=Fredoka:wght@600;700&family=Jua&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html, body, .stage { width: 680px; height: 240px; }
+  .blob-a { left: 420px; top: -150px; width: 320px; height: 320px; background: rgba(255,255,255,.22); }
+  .blob-b { left: -80px; top: 150px; width: 260px; height: 260px; }
+  .stack { left: 230px; top: 34px; display: flex; flex-direction: column; align-items: flex-start; }
+  .stack .kicker { position: relative; z-index: 1; margin: 0 0 -12px 22px; transform: rotate(-4deg); font-size: 15px; padding: 8px 16px 8px 12px; gap: 9px; border-width: 3px; box-shadow: 3px 4px 0 var(--ink); }
+  .stack .kicker i { width: 14px; height: 14px; border-width: 2.5px; }
+  .stack .name { font-size: 64px; padding: 2px 20px 11px; border-width: 4px; border-radius: 24px; box-shadow: 6px 8px 0 var(--ink); transform: rotate(-2.5deg); }
+  .stack .chips { gap: 10px; margin: 18px 0 0 16px; }
+  .stack .tile { width: 40px; height: 40px; border-width: 3px; box-shadow: 3px 4px 0 var(--ink); }
+  .mini { right: 36px; top: 30px; width: 92px; height: 92px; transform: rotate(8deg); }
+</style>
+</head>
+<body>
+<div class="stage" data-bubbles="40,150,30;18,110,18;600,120,22;170,40,16">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <svg class="moon" style="left:40px;top:28px;width:44px;height:44px;fill:var(--moon);transform:rotate(-16deg)" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <svg class="spark" style="left:132px;top:80px;width:30px;height:30px;fill:var(--butter);transform:rotate(-12deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="spark" style="left:600px;top:170px;width:34px;height:34px;fill:var(--pink);transform:rotate(12deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <span class="twinkle" style="left:540px;top:150px"></span>
+  <span class="twinkle" style="left:200px;top:20px"></span>
+  <svg class="squiggle" style="left:470px;top:204px;width:100px;height:22px;stroke:var(--lilac);transform:rotate(-4deg)" viewBox="0 0 104 20"><path d="M4 10 Q 16.5 1 29 10 T 54 10 T 79 10 T 100 10"/></svg>
+  <div class="mini" data-bot="happy"></div>
+  <div class="stack">
+    <span class="kicker"><i></i>suzy's chat bot</span>
+    <span class="name">soozybot</span>
+    <div class="chips">
+      <span class="tile twitch" data-logo="twitch"></span>
+      <span class="tile kick" data-logo="kick"></span>
+      <span class="tile discord" data-logo="discord"></span>
+    </div>
+  </div>
+</div>
+<script src="bot.js"></script>
+</body>
+</html>

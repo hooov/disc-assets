@@ -1,0 +1,28 @@
+<!doctype html>
+<!-- soozybot, the robot on its own with a transparent background (for stickers, emotes,
+     docs, anything that needs the mascot cut out), 1024x1024 with its hard shadow. The #hash
+     picks the mood: happy (default), wink, sleep; ?sticker adds a white cut line for dark
+     backgrounds. Rendered by render.js (soozybot-robot*). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html, body { width: 512px; height: 512px; background: transparent; }
+  .mascot { position: absolute; left: 20px; top: 16px; width: 472px; height: 472px; }
+  /* ?sticker: a white cut line round the robot, so its dark outline still reads on dark backgrounds */
+  .sticker .mascot { left: 34px; top: 30px; width: 444px; height: 444px; filter: url(#cut); }
+</style>
+</head>
+<body>
+<!-- the cut line: the robot's shape grown by 6px, filled white, under the robot -->
+<svg width="0" height="0" style="position:absolute"><filter id="cut" x="-10%" y="-10%" width="120%" height="120%"><feMorphology in="SourceAlpha" operator="dilate" radius="6" result="grown"/><feFlood flood-color="#FFFFFF"/><feComposite in2="grown" operator="in" result="edge"/><feMerge><feMergeNode in="edge"/><feMergeNode in="SourceGraphic"/></feMerge></filter></svg>
+<div class="mascot" id="m" data-bot="happy"></div>
+<script>
+  if (/sticker/.test(location.search)) document.documentElement.classList.add("sticker");
+  const mood = location.hash.slice(1);
+  if (mood) document.getElementById("m").dataset.bot = mood;
+</script>
+<script src="bot.js"></script>
+</body>
+</html>

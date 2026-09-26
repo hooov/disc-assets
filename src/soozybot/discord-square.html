@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- soozybot square Discord picture, 1024x1024, laid out for the whole square (where the
+     avatar is shown uncropped or with rounded corners) rather than kept inside a circle:
+     the robot bigger, stickers out in the corners. Rendered by render.js
+     (soozybot-discord-square). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html, body, .stage { width: 512px; height: 512px; }
+  .stage { background: var(--mint); }
+  .blob-a { left: -110px; top: 320px; width: 320px; height: 320px; }
+  .blob-b { left: 340px; top: -90px; width: 280px; height: 280px; background: rgba(255,255,255,.2); }
+  .mascot { left: 38px; top: 44px; width: 436px; height: 436px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <svg class="spark" style="left:28px;top:26px;width:52px;height:52px;fill:var(--butter);transform:rotate(-12deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="spark" style="left:440px;top:440px;width:44px;height:44px;fill:var(--pink);transform:rotate(14deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="moon" style="left:438px;top:30px;width:44px;height:44px;fill:var(--moon);transform:rotate(-16deg)" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  <div class="dot" style="left:34px;top:440px;width:26px;height:26px;background:var(--lilac)"></div>
+  <span class="twinkle" style="left:110px;top:100px"></span>
+  <span class="twinkle" style="left:400px;top:120px"></span>
+  <div class="mascot" data-bot="happy"></div>
+</div>
+<script src="bot.js"></script>
+</body>
+</html>
