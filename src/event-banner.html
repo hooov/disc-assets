@@ -3,7 +3,9 @@
      (bot.suzy.gg apps/bot/src/live/scheduledEventSync.ts, COVER_IMAGE_URL).
      Discord wants 800x320 (2.5:1). Laid out at 800x320 CSS px, rendered at 2x
      by render.sh. Palette, type and stickers are suzy.gg's styles.css. One image
-     for every stream, so nothing on it is per-stream (no title, no game). -->
+     for every stream, so nothing on it is per-stream (no title, no game).
+     The live cover (800px-event.png) is the #cutout variant since 2026-09-26; render.sh
+     `event` renders that, `event-photo` the photo variant to 800px-event-photo.png. -->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -30,15 +32,18 @@
 
   /* background stickers */
   .blob { left: -90px; top: 170px; width: 280px; height: 280px; border-radius: 999px; background: rgba(255,255,255,.28); }
-  .blob-b { left: 560px; top: -170px; width: 300px; height: 300px; border-radius: 999px; background: rgba(255,255,255,.22); }
+  /* white sleepy moon top right, mostly above the edge, a cloud across its rim */
+  .bigmoon { left: 618px; top: -94px; width: 200px; height: 200px; filter: drop-shadow(5px 6px 0 var(--ink)); }
+  .cloud { width: 72px; height: 45px; fill: var(--paper); stroke: var(--ink); stroke-width: 1.3; stroke-linejoin: round; filter: drop-shadow(3px 4px 0 var(--ink)); }
+  .cloud-a { left: 586px; top: 14px; }
   .ring { right: -80px; bottom: -120px; width: 240px; height: 240px; border-radius: 999px; border: 5px solid rgba(27,26,51,.1); }
   .spark, .moon { stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
   .spark-a { left: 30px; top: 34px; width: 26px; height: 26px; fill: var(--pink); transform: rotate(-12deg); }
-  .spark-b { right: 40px; top: 30px; width: 30px; height: 30px; fill: var(--butter); transform: rotate(14deg); }
+  .spark-b { left: 764px; top: 146px; width: 24px; height: 24px; fill: var(--butter); transform: rotate(14deg); }
   .moon { left: 272px; top: 264px; width: 28px; height: 28px; fill: var(--butter); transform: rotate(-18deg); }
   .dot { right: 58px; top: 214px; width: 18px; height: 18px; border-radius: 999px; background: var(--mint); border: 2.5px solid var(--ink); box-shadow: 3px 4px 0 var(--ink); }
   .hoop { left: 298px; top: 26px; width: 22px; height: 22px; border-radius: 999px; border: 3px solid var(--ink); }
-  .squiggle { right: 120px; top: 22px; width: 90px; height: 18px; fill: none; stroke: var(--pink); stroke-width: 4; stroke-linecap: round; transform: rotate(-6deg); }
+  .squiggle { left: 424px; top: 20px; width: 90px; height: 18px; fill: none; stroke: var(--pink); stroke-width: 4; stroke-linecap: round; transform: rotate(-6deg); }
 
   /* photo stack, as on suzy.gg */
   .photo { left: 56px; top: 50px; width: 196px; height: 196px; }
@@ -64,12 +69,48 @@
   .tile img { width: 21px; height: 21px; }
 
   .site { right: 26px; bottom: 18px; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .55; }
+
+  /* #cutout variant: hs-cutout.png in a card, head popping out over the top edge.
+     The same image is drawn twice: clipped by the card, and again clipped to the
+     strip above the card's top edge plus three border widths, so hair and headphones sit
+     over the border and the two copies overlap (meeting exactly left a hairline seam the border showed through); its left 12% is trimmed, where only a sleeve reaches the top corner. --off is where the card's top edge cuts the image (13% down,
+     below the hair, above the shoulders: nothing there touches the image edge, so
+     no straight cut shows). --h must stay at or under --w minus --off, or the
+     image ends above the card's bottom edge. */
+  .cutphoto { left: 52px; top: 82px; --w: 212px; --off: 28px; --h: 178px; --b: 3px; --r: 22px; display: none; width: var(--w); height: var(--h); }
+  body.cut .cutphoto { display: block; }
+  body.cut .photo { display: none; }
+  .cp-back { position: absolute; inset: 0; border-radius: var(--r); border: var(--b) solid var(--ink); }
+  .cp-back-pink { background: var(--pink); transform: translate(calc(var(--b) * 3), calc(var(--b) * 3)) rotate(6deg); }
+  .cp-back-mint { background: var(--mint); transform: translate(calc(var(--b) * -2.7), calc(var(--b) * 1.4)) rotate(-5deg); }
+  .cp-rot { position: absolute; inset: 0; transform: rotate(1.5deg); }
+  .cp-card { position: absolute; inset: 0; overflow: hidden; border-radius: var(--r); border: var(--b) solid var(--ink); background: #FFFFFF; box-shadow: calc(var(--b) * 2) calc(var(--b) * 2.7) 0 var(--ink); }
+  .cp-card img { position: absolute; left: calc(-1 * var(--b)); top: calc(-1 * (var(--off) + var(--b))); width: var(--w); }
+  .cp-pop { position: absolute; left: 0; top: calc(-1 * var(--off)); width: var(--w); clip-path: inset(0 0 calc(var(--w) - var(--off) - var(--b) * 3) 12%); }
 </style>
 </head>
 <body>
 <div class="stage">
   <div class="blob"></div>
-  <div class="blob-b"></div>
+  <!-- White sleepy moon, viewBox 100x100, only its lower part on the canvas
+       (same drawing as twitch-offline.html). -->
+  <svg class="bigmoon" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="#FFFFFF" stroke="var(--ink)" stroke-width="1.6" />
+    <g fill="#E4E8F2" stroke="var(--ink)" stroke-width=".9">
+      <circle cx="30" cy="82" r="4" />
+      <circle cx="74" cy="79" r="6.5" />
+      <circle cx="52" cy="88" r="3" />
+      <circle cx="84" cy="58" r="2.6" />
+    </g>
+    <g fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round">
+      <path d="M36 66 q4 3.6 8 0" />
+      <path d="M56 66 q4 3.6 8 0" />
+      <path d="M47.5 73 q2.5 2 5 0" />
+    </g>
+    <ellipse cx="33" cy="73" rx="4.2" ry="2.6" fill="var(--pink)" />
+    <ellipse cx="67" cy="73" rx="4.2" ry="2.6" fill="var(--pink)" />
+  </svg>
+  <svg class="cloud cloud-a" viewBox="0 0 32 20"><path d="M7 18.5H25a4.8 4.8 0 0 0 .6-9.6A7 7 0 0 0 12.4 6.8 5.9 5.9 0 0 0 7 18.5z"/></svg>
   <div class="ring"></div>
   <svg class="spark spark-a" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
   <svg class="spark spark-b" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
@@ -82,6 +123,17 @@
     <div class="photo-back photo-back-pink"></div>
     <div class="photo-back photo-back-blue"></div>
     <div class="photo-card"><img src="suzy-hs.webp" alt="" /></div>
+    <span class="heart"><svg viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.6-8.8 10-8.8 10s-8.8-5.4-8.8-10a5.2 5.2 0 0 1 8.8-3.7 5.2 5.2 0 0 1 8.8 3.7z"/></svg></span>
+  </div>
+
+
+  <div class="cutphoto">
+    <div class="cp-back cp-back-pink"></div>
+    <div class="cp-back cp-back-mint"></div>
+    <div class="cp-rot">
+      <div class="cp-card"><img src="hs-cutout.png" alt="" /></div>
+      <img class="cp-pop" src="hs-cutout.png" alt="" />
+    </div>
     <span class="heart"><svg viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.6-8.8 10-8.8 10s-8.8-5.4-8.8-10a5.2 5.2 0 0 1 8.8-3.7 5.2 5.2 0 0 1 8.8 3.7z"/></svg></span>
   </div>
 
@@ -98,5 +150,9 @@
 
   <span class="site">suzy.gg</span>
 </div>
+<script>
+  // render.sh opens this page with #cutout for the cutout variant.
+  if (location.hash === "#cutout") document.body.classList.add("cut");
+</script>
 </body>
 </html>
