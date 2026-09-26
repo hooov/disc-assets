@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- soozybot profile picture, for Twitch and Discord (both crop it to a circle), rendered
+     at 1024x1024. Everything that matters sits inside the circle. The ground is mint so the
+     bot stands apart from suzy's own blue avatar in chat; #blue and #pink are alternatives.
+     Rendered by render.sh (bot-avatar, bot-avatar-blue, bot-avatar-pink). #sleep is the offline
+     picture the bot swaps to while suzy is not live: muted ground, mascot asleep, z's. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html, body, .stage { width: 512px; height: 512px; }
+  .stage { background: var(--mint); }
+  .v-blue .stage { background: var(--ground); }
+  .v-pink .stage { background: var(--pink); }
+  /* the pineapple has mint leaves, so its version sits on the blue water (or lilac) */
+  .pine .stage { background: var(--ground); }
+  .pine.v-pink .stage { background: var(--pink); }
+  .pine.v-lilac .stage { background: var(--lilac); }
+  .blob-a { left: -90px; top: 330px; width: 300px; height: 300px; }
+  .blob-b { left: 330px; top: -60px; width: 240px; height: 240px; background: rgba(255,255,255,.2); }
+  .mascot { left: 76px; top: 70px; width: 360px; height: 360px; }
+  .z { position: absolute; display: none; font-family: var(--display); font-weight: 700; line-height: 1; color: var(--moon); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill; text-shadow: 3px 4px 0 var(--ink); }
+  .v-sleep .stage { background: #B8B5CF; }
+  .v-sleep .z { display: block; }
+  .v-sleep .spark { display: none; }
+</style>
+</head>
+<body>
+<div class="stage" data-bubbles="66,360,36;408,392,26;430,250,18;120,150,16">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <svg class="spark" style="left:92px;top:118px;width:40px;height:40px;fill:var(--butter);transform:rotate(-12deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <svg class="spark" style="left:392px;top:150px;width:30px;height:30px;fill:var(--paper);transform:rotate(14deg)" viewBox="0 0 24 24"><path d="M12 1c.6 6 4.8 10.4 11 11.5-6.2 1.1-10.4 5.5-11 11.5-.6-6-4.8-10.4-11-11.5C7.2 11.4 11.4 7 12 1z"/></svg>
+  <span class="twinkle" style="left:400px;top:360px"></span>
+  <span class="twinkle" style="left:120px;top:400px"></span>
+  <div class="mascot" data-bot="happy"></div>
+  <span class="z" style="left:372px;top:66px;font-size:58px;transform:rotate(-12deg)">z</span>
+  <span class="z" style="left:338px;top:122px;font-size:42px;transform:rotate(-6deg)">z</span>
+  <span class="z" style="left:314px;top:166px;font-size:30px;transform:rotate(4deg)">z</span>
+</div>
+<script>if (location.hash === "#sleep") document.querySelector(".mascot").dataset.bot = "sleep";</script>
+<script src="bot.js"></script>
+</body>
+</html>

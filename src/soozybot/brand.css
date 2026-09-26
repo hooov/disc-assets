@@ -1,0 +1,53 @@
+/* soozybot: shared look for the bot's Twitch/Discord art. Same palette, type and sticker
+   pieces as suzy's Discord art and stream alerts (ink outlines, hard drop shadows, pills),
+   so the bot reads as part of the family; the bot's own colour is lilac (suzy's is pink). */
+:root {
+  --ground: #AFCBF2;
+  --ink: #1B1A33;
+  --paper: #F7F1E4;
+  --pink: #F4A7D8;
+  --blue: #93B4EE;
+  --mint: #9FE6CE;
+  --butter: #FBE0A0;
+  --lilac: #C9AEFF;
+  --moon: #FFFFFF;
+  --crater: #E4E8F2;
+  --mono: "DM Mono", ui-monospace, monospace;
+  --display: "Fredoka", sans-serif;
+  --ko: "Jua", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { overflow: hidden; background: var(--ground); color: var(--ink); }
+.stage { position: relative; overflow: hidden; background: var(--ground); }
+.stage > * { position: absolute; }
+
+/* background pieces */
+.blob { border-radius: 999px; background: rgba(255,255,255,.28); }
+.spark, .moon { stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.dot { border-radius: 999px; border: 3.5px solid var(--ink); box-shadow: 4px 5px 0 var(--ink); }
+.hoop { border-radius: 999px; border: 5px solid var(--ink); }
+.twinkle { width: 11px; height: 11px; border-radius: 999px; background: var(--paper); box-shadow: 0 0 0 3px var(--ink); }
+.squiggle { fill: none; stroke-width: 7; stroke-linecap: round; }
+
+/* the mascot: bot.js fills every [data-bot] with it; size it with width/height */
+.bot { overflow: visible; }
+
+/* text pieces */
+.kicker { display: inline-flex; align-items: center; gap: 14px; padding: 14px 28px 14px 22px; border-radius: 999px; background: var(--paper); border: 4px solid var(--ink); box-shadow: 4px 6px 0 var(--ink); font-family: var(--mono); font-weight: 500; font-size: 26px; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+.kicker i { width: 20px; height: 20px; border-radius: 999px; background: var(--mint); border: 3px solid var(--ink); }
+.name { display: inline-block; padding: 4px 30px 16px; border-radius: 34px; background: var(--lilac); border: 5px solid var(--ink); box-shadow: 9px 11px 0 var(--ink); font-family: var(--display); font-weight: 700; line-height: 1; white-space: nowrap; }
+.pill { display: inline-block; padding: 10px 28px 14px; border-radius: 999px; background: var(--paper); border: 4px solid var(--ink); box-shadow: 5px 7px 0 var(--ink); font-family: var(--display); font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.ko { font-family: var(--ko); font-weight: 400; }
+.chips { display: flex; gap: 16px; }
+.chip { display: inline-flex; align-items: center; gap: 12px; padding: 8px 24px 8px 8px; border-radius: 999px; background: var(--paper); border: 4px solid var(--ink); box-shadow: 5px 6px 0 var(--ink); font-family: var(--display); font-weight: 700; font-size: 28px; white-space: nowrap; }
+.tile { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 999px; border: 3.5px solid var(--ink); flex: none; }
+.tile svg { width: 56%; height: 56%; fill: var(--ink); }
+.tile.twitch { background: var(--lilac); }
+.tile.kick { background: #B6F5A0; }
+.tile.discord { background: var(--blue); }
+.tile.moon { background: var(--lilac); }
+.tile.moon svg { fill: var(--moon); stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+
+/* pineapple version (?pine): bubble stickers, and the name in the pineapple's butter */
+.bub { overflow: visible; }
+.pine .name { background: var(--butter); }
