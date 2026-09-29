@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- The honeypot channel's warning banner (bot.suzy.gg #167/#173/#175), shown
+     across the top of SoozyBot's warning post. A yellow safety sign (Tyler's
+     pick, style 2 of four tried on 2026-09-29): black border, black warning
+     triangle, WARNING, and the word in six more languages. Warning imagery only,
+     no photo or mascot. Heaviest face per script: Rubik 900 (English, Russian,
+     Spanish, Portuguese), Black Han Sans (Korean), ZCOOL QingKe HuangYou
+     (Chinese), Dela Gothic One (Japanese). Japanese is 注意, the word on yellow
+     Japanese caution signs, because 警告 would repeat the Chinese exactly.
+     880x300 CSS, rendered at 2x by render.sh (honeypot). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dela+Gothic+One&family=Rubik:wght@800;900&family=ZCOOL+QingKe+HuangYou&display=block" rel="stylesheet" />
+<style>
+  :root { --yellow: #FFD23F; --night: #16151F; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 880px; height: 300px; overflow: hidden; background: var(--yellow); color: var(--night); font-family: "Rubik", sans-serif; }
+  .edge { position: absolute; inset: 14px; border: 8px solid var(--night); border-radius: 22px; }
+  .inner { position: absolute; inset: 14px; display: flex; align-items: center; gap: 34px; padding: 0 40px 0 44px; }
+  .sign { width: 172px; height: 158px; flex-shrink: 0; }
+  .words { display: flex; flex-direction: column; min-width: 0; }
+  .big { font-weight: 900; font-size: 96px; line-height: .92; letter-spacing: .01em; }
+  .langs { margin-top: 12px; border-top: 5px solid var(--night); padding-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .row { display: flex; align-items: baseline; gap: 22px; white-space: nowrap; font-size: 28px; font-weight: 800; line-height: 1.2; }
+  .ko { font-family: "Black Han Sans", sans-serif; font-weight: 400; }
+  .zh { font-family: "ZCOOL QingKe HuangYou", sans-serif; font-weight: 400; }
+  .ja { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 26px; }
+</style>
+</head>
+<body>
+  <div class="edge"></div>
+  <div class="inner">
+    <svg class="sign" viewBox="0 0 150 138">
+      <path d="M75 10c4.6 0 8.8 2.4 11.1 6.4l53.3 92.3c4.9 8.5-1.2 19.3-11.1 19.3H21.7c-9.9 0-16-10.8-11.1-19.3L63.9 16.4C66.2 12.4 70.4 10 75 10z"
+        fill="#16151F" stroke="#16151F" stroke-width="8" stroke-linejoin="round"/>
+      <rect x="66" y="44" width="18" height="46" rx="9" fill="#FFD23F"/>
+      <circle cx="75" cy="106" r="10" fill="#FFD23F"/>
+    </svg>
+    <div class="words">
+      <div class="big">WARNING</div>
+      <div class="langs">
+        <div class="row">
+          <span class="ko" lang="ko">경고</span>
+          <span class="zh" lang="zh">警告</span>
+          <span class="ja" lang="ja">注意</span>
+          <span lang="pt">AVISO</span>
+        </div>
+        <div class="row">
+          <span lang="ru">ВНИМАНИЕ</span>
+          <span lang="es">ADVERTENCIA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
