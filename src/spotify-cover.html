@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- Spotify playlist covers (hovjsyy, 2026-10-06), in the look of Spotify's "Your top mixes"
+     tiles (Chill Mix, Pop Mix...): full-bleed photo, a small mark top-left in the label colour,
+     and near the bottom a flat colour bar running off the right edge, with a short stub of the
+     same colour at the left edge, holding the title in bold dark type. Proportions measured off
+     a screenshot of those tiles. The corner mark is a moon (her surname is Moon), not Spotify's
+     logo: these are her playlists, not Spotify's. Square 640 CSS px, rendered at 2x = 1280px.
+     Hash picks the cover: #dance, #intro; add -text or -big for the no-photo versions.
+     Photo: suzy-headphones-sq.webp, a 1600px square crop of hovjsyy's upscaled headphones shot
+     (the original's date stamp falls outside the crop), colour-corrected by grade-photo.py
+     into suzy-headphones-sq-graded.webp, which is what the cover uses. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 640px; height: 640px; overflow: hidden; background: #000; }
+  .cover { position: relative; width: 640px; height: 640px; overflow: hidden; }
+  .dance { --c: #FF8AD0; --c2: #8A5CFF; }
+  .intro { --c: #A9B8FF; --c2: #5FD8F0; }
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  /* colour gradient over the photo, picked by the second hash part (#dance-fade):
+     fade = label colour rising from the bottom; wash = diagonal two-colour overlay; glow = light leaks */
+  .wash { position: absolute; inset: 0; display: none; }
+  .fade .wash { display: block; background: linear-gradient(to top, var(--c) 0%, color-mix(in srgb, var(--c) 55%, transparent) 22%, transparent 58%); }
+  .wash2 .wash { display: block; background: linear-gradient(135deg, var(--c2), var(--c)); mix-blend-mode: overlay; opacity: .7; }
+  .glow .wash { display: block; background: radial-gradient(circle at 100% 0%, var(--c2), transparent 55%), radial-gradient(circle at 0% 100%, var(--c), transparent 60%); mix-blend-mode: screen; opacity: .75; }
+  .mark { position: absolute; left: 24px; top: 24px; width: 40px; height: 40px; fill: var(--c); filter: drop-shadow(0 1px 4px rgba(0,0,0,.4)); }
+  .stub, .bar { position: absolute; bottom: 34px; height: 78px; background: var(--c); }
+  .stub { left: 0; width: 24px; }
+  .bar { left: 50px; right: 0; display: flex; align-items: center; padding-left: 20px; font-family: "Figtree", sans-serif; font-weight: 800; font-size: 50px; letter-spacing: -.025em; color: #111; white-space: nowrap; }
+  /* no-photo covers (hovjsyy, 2026-10-07: playlist name only, no headshot):
+     text = same mark and bar on a dark ground tinted with the second colour;
+     big = two-colour gradient ground, the name set large in dark type, no bar */
+  .text .photo, .big .photo, .big .stub, .big .bar { display: none; }
+  .text { background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--c2) 70%, #000), #0d0b14 75%); }
+  .big { background: linear-gradient(135deg, var(--c2), var(--c)); }
+  .big .mark { fill: #111; filter: none; }
+  .name { display: none; position: absolute; left: 40px; right: 40px; bottom: 44px; font-family: "Figtree", sans-serif; font-weight: 800; color: #111; letter-spacing: -.04em; line-height: .9; }
+  .big .name { display: block; }
+  .name b { display: block; font-size: 150px; }
+  .name span { display: block; font-size: 64px; letter-spacing: -.025em; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="cover" id="cover">
+  <img class="photo" src="suzy-headphones-sq-graded.webp" alt="">
+  <div class="wash"></div>
+  <svg class="mark" viewBox="0 0 24 24"><path d="M15.5 3.2A9 9 0 1 0 20.8 15 7.2 7.2 0 0 1 15.5 3.2Z"/></svg>
+  <div class="stub"></div>
+  <div class="bar" id="title"></div>
+  <div class="name"><b id="word"></b><span>Playlist</span></div>
+</div>
+<script>
+  const [name, grad] = (location.hash.slice(1) || 'dance').split('-');
+  document.getElementById('cover').classList.add(name);
+  if (grad) document.getElementById('cover').classList.add(grad === 'wash' ? 'wash2' : grad);
+  const word = name[0].toUpperCase() + name.slice(1);
+  document.getElementById('title').textContent = word + ' Playlist';
+  document.getElementById('word').textContent = word;
+</script>
+</body>
+</html>
